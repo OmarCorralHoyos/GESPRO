@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <title>GESPRO</title>
+        <link rel="stylesheet"  href="/css/estilosInterfaz.css">
+    </head>
+            
+    <body>
+        <div id="contLogin">
+            
+            <form id="login" action="/log" method="POST">
+                <h2> ACCESO USUARIOS</h2>          
+                <input id="userValidar" type="text" name="userValidar" placeholder="Usuario"><br/>
+                <input id="passValidar" type="password" name="passValidar" placeholder="contraseña"><br/>
+                <input class="btn" type="submit"  value="INGRESAR">  
+            </form>
+        </div>
+        
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <% if(alert) { %>
+            <script>
+                Swal.fire({
+                    title: '<%= alertTitle %>',
+                    text:'<%= alertMessage %>',
+                    icon:'<%= alertIcon %>',
+                    showConfirmButton: <%= showConfirmButton %>,
+                    timer: <%= timer %>
+                }).then(()=>{
+                    window.location = '/<%= ruta %>'
+                })
+            </script>
+        <% } %>
+    </body>
+</html>

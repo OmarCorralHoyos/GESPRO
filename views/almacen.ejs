@@ -1,0 +1,85 @@
+<%-include('template/cabecera',{tituloweb: 'ALMACEN' }) %>
+
+
+    <div id="container">
+        <%- include('template/navbar') %>
+            <div id="titulo" class=" border text-center">
+                <h1>ALMACEN</h1>
+            </div>
+            <div class="row border mt-2">
+
+
+                <div id="tb1" class="col-8">
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>NOMBRE HERRAMIENTA</th>
+                                <th>ESTADO</th>
+                                <th>TIPO DE HERRAMIENTA</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% results.forEach((almacen)=> { %>
+                                <tr>
+                                    <td>
+                                        <%-almacen.idherra%>
+                                    </td>
+                                    <td>
+                                        <%-almacen.nombreherra%>
+                                    </td>
+                                    <td>
+                                        <%-almacen.estado%>
+                                    </td>
+                                    <td>
+                                        <%-almacen.tipoherra%>
+                                    </td>
+                                    <td>
+                                        <a href="/edital/<%=almacen.idherra%>" id="btnEdit">EDITAR</a>
+                                    </td>
+                                    <td>
+                                        <a href="/deleteal/<%=almacen.idherra%>"
+                                            onclick="return confirm('¿Desea eliminar este registro?')"
+                                            id="btnEli">BORRAR</a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="formPro col-4">
+                    <form action="/savealma" method="post">
+
+                        <p>Nombre de la herramienta:</p>
+                        <input type="text" name="nombreherra" id="nombreherra" placeholder="Herramienta" required>
+                        <br>
+                        <p>Estado de la herramienta:</p>
+                        <select name="estadoherra" id="estadoherra" required="true">
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Usado">Usado</option>
+                            <option value="Dañado">Dañado</option>
+                        </select>
+                        <br>
+                        <p>Tipo de herramiento:</p>
+                        <select name="tipoherra" id="tipoherra" required="true">
+                            <option value="Campo">Campo</option>
+                            <option value="Oficina">Oficina</option>
+
+                        </select>
+                        <br>
+
+                        <input type="submit" value="GUARDAR">
+
+                    </form>
+                </div>
+
+            </div>
+
+    </div>
+
+    <%- include('template/piecera') %>

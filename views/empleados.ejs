@@ -1,0 +1,88 @@
+<%-include('template/cabecera',{tituloweb: 'EMPLEADOS'}) %>
+
+
+<div id="contenedor">
+    <%- include('template/navbar') %> 
+
+    <div id="titulo">
+        <h1>EMPLEADOS</h1>
+    </div>
+    
+    <div id="tbPro">
+
+        <div id="tb1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>DIRECCION</th>
+                        <th>TELEFONO</th>
+                        <th>CORREO</th>
+                        <th>CARGO</th>
+                        <th>SALARIO</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% results.forEach((empleados) => { %>
+                        <tr>
+                         <td><%- empleados.idEmpleados %></td>
+                         <td><%- empleados.nombreempleado %></td>
+                         <td><%- empleados.direccionempleado %></td>
+                         <td><%- empleados.telempleado %></td>
+                         <td><%- empleados.emailempleado %></td>
+                         <td><%- empleados.cargoempleado %></td>
+                         <td><%- empleados.salarioempleado %></td>
+                         <td>
+                            <a href="/editemp/<%=empleados.idEmpleados %>" id="btnEdit">EDITAR</a>
+                        </td>
+                        <td>
+                            <a href="/deleteemp/<%=empleados.idEmpleados%>" onclick="return confirm('¿Desea eliminar este registro?')" id="btnEli">BORRAR</a>
+                        </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+                
+            </table>
+
+        </div>
+       
+        <div class="formPro">
+            <form action="/saveemp" method="post">
+
+                <p>Identificacion empleado:</p>
+                <input type="text" id="idEmpleados" name="idEmpleados"  placeholder="Numero de identificacion" required>
+                <br>
+                <p>Nombre del empleado:</p>
+                <input type="text" id="nombreempleado" name="nombreempleado"  placeholder="nombre completo" required>
+                <br>
+                <p>Direccion:</p>
+                <input type="text" id="direccionempleado" name="direccionempleado" placeholder="Lugar donde reside">
+                <br>
+                <p>Telefono:</p>
+                <input type="tel" id="telempleado" name="telempleado" placeholder="Fijo o celular" required>
+                <br>
+                <p>Correo:</p>
+                <input type="email" id="emailempleado" name="emailempleado" placeholder="Verificar correo" >
+                <br>
+                <p>Cargo:</p>
+                <input type="text" id="cargoempleado" name="cargoempleado" placeholder="Labor que desempeña" required>
+                <br>
+                <p>Salario:</p>
+                <input type="number" id="salarioempleado" name="salarioempleado" placeholder="$$$">
+                <br>
+
+                <input type="submit" value="GUARDAR">
+
+            </form>
+        </div>
+    </div>
+    
+    
+</div>
+
+    
+<%- include('template/piecera') %> 
+   

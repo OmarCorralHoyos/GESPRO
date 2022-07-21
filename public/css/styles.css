@@ -1,0 +1,21 @@
+body{
+    background-image: url(/Imagenes/fondo\ interfaz.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    color: white;
+    font-size: large;
+    width: 98%;
+    margin: 0 auto;
+}
+
+h1{
+    font-size: large;
+}
+
+h5{
+    font-size: large;
+}
+
+#titulo h1{
+    font-size: x-large;
+}

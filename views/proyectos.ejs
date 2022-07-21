@@ -1,0 +1,81 @@
+<%-include('template/cabecera',{tituloweb: 'PROYECTOS'}) %>
+
+<div id="contenedor">
+    <%- include('template/navbar') %> 
+
+    <div id="titulo">
+        <h1>PROYECTOS</h1>
+    </div>
+    
+    <div id="tbPro">
+
+        <div id="tb1">
+            <table id="tbproyecto">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>PROYECTO</th>
+                        <th>DIRECCION</th>
+                        <th>FECHA INICIAL</th>
+                        <th>FECHA DE TERMINACION</th>
+                        <th>CLIENTE</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% results.forEach((gestionproyecto) => { %>
+                        <tr>
+                         <td><%- gestionproyecto.idproye %></td>
+                         <td><%- gestionproyecto.nombreproye %></td>
+                         <td><%- gestionproyecto.direccionproye %></td>
+                         <td class="formatfeini"><%- gestionproyecto.fechainicialproye %></td>
+                         <td class="formatfefin"><%- gestionproyecto.fechafinalproye %></td>
+                         <td><%- gestionproyecto.clientes_idclientes%></td>
+                         <td>
+                            <a href="" id="btnVer">VER</a>
+                         </td>
+                         <td>
+                            <a href="/editproyec/<%= gestionproyecto.idproye %>" id="btnEdit">EDITAR</a>
+                        </td>
+                        <td>
+                            <a href="/deleteproye/<%=gestionproyecto.idproye%>" onclick="return confirm('¿Desea eliminar este registro?')" id="btnEli">BORRAR</a>
+                        </td>
+                    <% }) %>
+                </tbody>
+                
+            </table>
+
+        </div>
+       
+        <div class="formPro">
+            <form action="/saveproye" method="post">
+
+                <p>Nombre del proyecto:</p>
+                <input type="text" id="nombreproye" name="nombreproye"  placeholder="Nombre que se le da al proyecto" required>
+                <br>
+                <p>Direccion:</p>
+                <input type="text" id="direccionproye" name="direccionproye" placeholder="Lugar donde se realiza el proyecto" required>
+                <br>
+                <p>Fecha inicial:</p>
+                <input type="date" id="fechainicialproye"  name="fechainicialproye" min="2022-01-01" max="2050-12-31" required>
+                <br>
+                <p>Fecha final:</p>
+                <input type="date" id="fechafinalproye"  name="fechafinalproye" min="2022-01-01" max="2050-12-31">
+                <br>
+                <p>Cliente:</p>
+                <input type="text" id="clientes_idclientes" name="clientes_idclientes" placeholder="Empresa o personal">
+                <br>
+
+                <input type="submit" value="GUARDAR">
+
+            </form>
+        </div>
+    </div>
+    
+    
+</div>
+    
+
+<%- include('template/piecera') %> 
